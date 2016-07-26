@@ -1,7 +1,13 @@
-const expect = require('chai').expect;
+'use strict';
 
-describe('Stuff', function() {
-  it('test stuff', function() {
-    expect(1).to.eql(1);
+// const expect = require('chai').expect;
+// const pokemonRouter = require('../route/pokemonRouter');
+
+describe('routing', function() {
+  // // beforeEach(function(){
+  // //   this.pokemonRouter = new pokemonRouter();
+  // });
+  it('should handle routes', function() {
+    // expect(this.pokemonRouter.POST).to.be.an('object');
   });
 });
