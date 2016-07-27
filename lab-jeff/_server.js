@@ -4,7 +4,7 @@ const pokemonRouter = require('./route/pokemonRouter');
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
-const serverPort = 3000;
+const serverPort = 9000;
 
 let app = express();
 

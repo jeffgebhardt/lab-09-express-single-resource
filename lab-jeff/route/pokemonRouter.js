@@ -1,14 +1,11 @@
+'use strict';
+
 const Pokemon = require('../model/pokemon');
 const uuid = require('node-uuid');
 const express = require('express');
 const router = express.Router();
 
 let pokemonCollection = {};
-
-router.use((req, res, next) => {
-  console.log('Request method is /' + req.method);
-  next();
-});
 
 router.post('/pokemon/', (req, res) => {
   let pokeName = req.body.pokeName;
@@ -31,14 +28,18 @@ router.delete('/pokemon/:pokeId', (req, res) => {
   res.end();
 });
 
-router.get('/pokemon/:pokeId', (req, res) => {
+router.get('/pokemon/:pokeId', (req, res, next) => {
   for(let key in pokemonCollection){
     if(key === req.params.pokeId) {
       console.log('Found matching Pokemon!');
-      res.json('Here is the pokemon you requested: ' + pokemonCollection[key].pokeName + ', type: ' + pokemonCollection[key].pokeType);
+      res.json('Here is the pokemon you requested: ' + pokemonCollection[key].pokeName +
+      ', type: ' + pokemonCollection[key].pokeType);
+      res.end();
     }
   }
-  res.end();
+  let handledError = new Error();
+  handledError.status = 404;
+  next(handledError);
 });
 
 router.get('/', (req, res) => {
